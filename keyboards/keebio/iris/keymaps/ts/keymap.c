@@ -113,10 +113,10 @@ const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][NUM_DIRECTIONS] = {
 
 
 // COMBOS
-const uint16_t PROGMEM jk_esc[] = {RSFT_T(KC_J), RCTL_T(KC_K), COMBO_END};
+const uint16_t PROGMEM ui_esc[] = {KC_U, KC_I, COMBO_END};
 const uint16_t PROGMEM gk_f12[] = {KC_G, KC_H, COMBO_END};
 combo_t key_combos[] = {
-    COMBO(jk_esc, KC_ESC),
+    COMBO(ui_esc, KC_ESC),
     COMBO(gk_f12, KC_F12),
 };
 
