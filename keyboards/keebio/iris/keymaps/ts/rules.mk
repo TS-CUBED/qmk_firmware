@@ -1,7 +1,7 @@
 SRC += features/achordion.c
 
-VIA_ENABLE = yes
-VIAL_ENABLE = yes
+# VIA_ENABLE = yes
+# VIAL_ENABLE = yes
 
 MOUSEKEY_ENABLE = yes       # Mouse keys(+4700)
 EXTRAKEY_ENABLE = yes      # Audio control and System control(+450)
@@ -17,7 +17,7 @@ CAPS_WORD_ENABLE = yes
 
 MOUSE_ENABLE = yes
 COMBO_ENABLE = yes
-TAP_DANCE_ENABLE = no
+TAP_DANCE_ENABLE = yes
 LTO_ENABLE = yes
 
 DYNAMIC_TAPPING_TERM_ENABLE = yes
