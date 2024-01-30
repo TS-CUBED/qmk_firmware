@@ -21,14 +21,14 @@
 #define LT_NAV   LT(NAV, KC_TAB)
 #define LT_SYM   LT(SYM, KC_RALT)
 #define LT_NUM   LT(NUM, KC_LGUI)
-#define LT_MCR   LT(MCR, KC_MENU)
+#define LT_MCR   LT(MCR, KC_APP)
 #define OSM_LGUI OSM(MOD_LGUI)
 #define OSM_LSFT OSM(MOD_LSFT)
 #define OSM_LCTL OSM(MOD_LCTL)
 #define OSM_LALT OSM(MOD_LALT)
 #define OSM_MEH  OSM(MOD_MEH)
 #define UNDO     LCTL(KC_Z)
-#define REDO     LCTL(KC_Z)
+#define REDO     RCS(KC_Z)
 #define CUT      LCTL(KC_X)
 #define COPY     LCTL(KC_C)
 #define PASTE    LCTL(KC_V)
@@ -42,7 +42,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                                   //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
                                                                       KC_TAB,   KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                               KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,   KC_DEL,
                                                                   //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
-                                                                      KC_ESC,  HOME_A,  HOME_S,  HOME_D,  HOME_F,   KC_G,                               KC_H,   HOME_J,  HOME_K,  HOME_L,  HOME_SC, KC_QUOT,
+                                                                     OSL(MCR), HOME_A,  HOME_S,  HOME_D,  HOME_F,   KC_G,                               KC_H,   HOME_J,  HOME_K,  HOME_L,  HOME_SC, KC_QUOT,
                                                                   //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
                                                                      CW_TOGG,  HOME_Z,   KC_X,    KC_C,    KC_V,    KC_B,   KC_BSPC,          KC_ESC,   KC_N,    KC_M,   KC_COMM, KC_DOT,  HOME_SL, CW_TOGG,
                                                                   //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
@@ -58,7 +58,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                                   //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
                                                                       KC_TRNS,OSM_LGUI,OSM_LSFT,OSM_LCTL,OSM_LALT,OSM_MEH,                            KC_LEFT, KC_DOWN,  KC_UP,   KC_RGHT, KC_MPLY, KC_MSTP,
                                                                   //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
-                                                                     KC_TRNS,   UNDO,    CUT,     COPY,   PASTE,   REDO,    KC_TRNS,          KC_TRNS, KC_WH_L, KC_WH_D, KC_WH_U, KC_WH_R, KC_BTN4, KC_BTN5,
+                                                                     KC_TRNS,  UNDO,    CUT,     COPY,    PASTE,   REDO,    KC_TRNS,          KC_TRNS, KC_WH_L, KC_WH_D, KC_WH_U, KC_WH_R, KC_BTN4, KC_BTN5,
                                                                   //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
                                                                                                     KC_TRNS, KC_TRNS, KC_TRNS,                    KC_BTN1, KC_BTN2, KC_BTN3
                                                                                                 // └────────┴────────┴────────┘                 └────────┴────────┴────────┘
