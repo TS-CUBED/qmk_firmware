@@ -17,7 +17,9 @@
 #define HOME_L   LALT_T(KC_L)
 #define HOME_SC  LGUI_T(KC_SCLN)
 #define HOME_Z   LT(SYM, KC_Z)
+#define HOME_X   LT(SYM, KC_X)
 #define HOME_SL  LT(SYM, KC_SLASH)
+#define HOME_DOT  LT(SYM, KC_DOT)
 #define LT_NAV   LT(NAV, KC_TAB)
 #define LT_SYM   LT(SYM, KC_RALT)
 #define LT_NUM   LT(NUM, KC_LGUI)
@@ -33,6 +35,7 @@
 #define COPY     LCTL(KC_C)
 #define PASTE    LCTL(KC_V)
 #define CTL_G    LCTL(KC_G)
+#define BS_WORD  LCTL(KC_BSPC)
 
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -44,7 +47,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                                   //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
                                                                       CTL_G,   HOME_A,  HOME_S,  HOME_D,  HOME_F,   KC_G,                               KC_H,   HOME_J,  HOME_K,  HOME_L,  HOME_SC, KC_QUOT,
                                                                   //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
-                                                                     CW_TOGG,  HOME_Z,   KC_X,    KC_C,    KC_V,    KC_B,   KC_BSPC,          KC_ESC,   KC_N,    KC_M,   KC_COMM, KC_DOT,  HOME_SL, CW_TOGG,
+                                                                     CW_TOGG,  KC_Z,   HOME_X,    KC_C,    KC_V,    KC_B,   KC_BSPC,          KC_ESC,   KC_N,    KC_M,   KC_COMM,HOME_DOT, KC_SLASH, CW_TOGG,
                                                                   //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
                                                                                                     LT_NUM,   LT_NAV,  KC_SPC,                   SC_SENT,  LT_SYM,  LT_MCR
                                                                                                 // └────────┴────────┴────────┘                 └────────┴────────┴────────┘
@@ -72,7 +75,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                                   //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
                                                                      KC_TRNS, KC_EXLM, KC_MINS,  KC_PLUS, KC_EQL,  KC_HASH,                           KC_PIPE, KC_COLN, KC_LPRN, KC_RPRN,  KC_AT,   KC_NO,
                                                                   //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
-                                                                     KC_TRNS, KC_CIRC, KC_SLSH, KC_ASTR, KC_BSLS, KC_UNDS, KC_DEL,           KC_TRNS, KC_TILD,  KC_DLR, KC_LCBR, KC_RCBR, KC_QUES,  KC_NO,
+                                                                     KC_TRNS, KC_CIRC, KC_SLSH, KC_ASTR, KC_BSLS, KC_UNDS, BS_WORD,           KC_TRNS, KC_TILD,  KC_DLR, KC_LCBR, KC_RCBR, KC_QUES,  KC_NO,
                                                                   //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
                                                                                                      KC_TRNS, TT(NUM), KC_BSPC,                   KC_TRNS, KC_TRNS, KC_TRNS
                                                                                                 // └────────┴────────┴────────┘                 └────────┴────────┴────────┘
@@ -116,9 +119,11 @@ const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][NUM_DIRECTIONS] = {
 // COMBOS
 const uint16_t PROGMEM ui_esc[] = {KC_U, KC_I, COMBO_END};
 const uint16_t PROGMEM gk_f12[] = {KC_G, KC_H, COMBO_END};
+const uint16_t PROGMEM bs_word[] = {KC_C, KC_COMM, COMBO_END};
 combo_t key_combos[] = {
     COMBO(ui_esc, KC_ESC),
     COMBO(gk_f12, KC_F12),
+    COMBO(bs_word, BS_WORD),
 };
 
 // Achordeon https://getreuer.info/posts/keyboards/achordion/index.html#add-achordion-to-your-keymap
@@ -141,11 +146,13 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t* record) {
   switch (keycode) {
     // Increase the tapping term a little for slower ring and pinky fingers.
     case HOME_Z:
+    case HOME_X:
     case HOME_A:
     case HOME_S:
     case HOME_L:
     case HOME_SC:
     case HOME_SL:
+    case HOME_DOT:
       return TAPPING_TERM + 15;
 
     default:
