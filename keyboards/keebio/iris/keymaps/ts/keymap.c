@@ -77,7 +77,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                                   //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
                                                                      KC_TRNS, KC_CIRC, KC_SLSH, KC_ASTR, KC_BSLS, KC_UNDS, BS_WORD,           KC_TRNS, KC_TILD,  KC_DLR, KC_LCBR, KC_RCBR, KC_QUES,  KC_NO,
                                                                   //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
-                                                                                                    KC_TRNS, KC_TRNS, KC_TRNS,                   KC_TRNS, KC_TRNS, KC_TRNS
+                                                                                                    KC_TRNS, KC_TAB,  KC_TRNS,                   KC_TRNS, KC_TRNS, KC_TRNS
                                                                                                 // └────────┴────────┴────────┘                 └────────┴────────┴────────┘
 ),
 
