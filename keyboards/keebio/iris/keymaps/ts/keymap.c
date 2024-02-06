@@ -37,13 +37,6 @@
 #define CTL_G    LCTL(KC_G)
 #define BS_WORD  LCTL(KC_BSPC)
 
-// Custom keycodes
-// here I define LayerLock, following
-// https://getreuer.info/posts/keyboards/layer-lock/index.html
-enum custom_keycodes {
-  LLOCK = SAFE_RANGE,
-  // Other custom keys...
-};
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [QWERTY] = LAYOUT(
@@ -62,7 +55,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 [NAV] = LAYOUT(
                                                                   //┌────────┬────────┬────────┬────────┬────────┬────────┐                          ┌────────┬────────┬────────┬────────┬────────┬────────┐
-                                                                      LLOCK,  KC_PSCR,  KC_HOME, KC_PGUP, KC_INS, KC_PAUS,                            KC_ACL0, KC_ACL1, KC_ACL2, KC_MUTE, KC_VOLD, KC_VOLU,
+                                                                     TG(1), KC_PSCR,  KC_HOME, KC_PGUP, KC_INS, KC_PAUS,                            KC_ACL0, KC_ACL1, KC_ACL2, KC_MUTE, KC_VOLD, KC_VOLU,
                                                                   //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
                                                                       KC_TRNS, KC_SCRL, KC_END,  KC_PGDN, KC_DEL, CW_TOGG,                             KC_MS_L, KC_MS_D, KC_MS_U, KC_MS_R, KC_MPRV, KC_MNXT,
                                                                   //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
@@ -76,7 +69,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 [SYM] = LAYOUT(
                                                                   //┌────────┬────────┬────────┬────────┬────────┬────────┐                          ┌────────┬────────┬────────┬────────┬────────┬────────┐
-                                                                      LLOCK,   KC_F1,   KC_F2,   KC_F3,    KC_F4,   KC_F5,                             KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,
+                                                                     TG(2),  KC_F1,   KC_F2,   KC_F3,    KC_F4,   KC_F5,                             KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,
                                                                   //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
                                                                        KC_TAB, KC_GRV,  KC_LT,   KC_GT,   KC_DQUO, KC_DOT,                            KC_AMPR,  KC_EQL, KC_LBRC, KC_RBRC, KC_RPRN,  KC_F12,
                                                                   //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
@@ -90,7 +83,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 [NUM] = LAYOUT(
                                                                   //┌────────┬────────┬────────┬────────┬────────┬────────┐                          ┌────────┬────────┬────────┬────────┬────────┬────────┐
-                                                                      LLOCK,  RGB_TOG, RGB_MOD, RGB_RMOD, RGB_VAD, RGB_VAI,                            KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_BSPC,
+                                                                     TG(3), RGB_TOG, RGB_MOD, RGB_RMOD, RGB_VAD, RGB_VAI,                            KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_BSPC,
                                                                   //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
                                                                      KC_TRNS, BL_TOGG, BL_STEP,  BL_ON,    BL_UP,  BL_DOWN,                            KC_PAST,  KC_7,    KC_8,    KC_9,   KC_PSLS, KC_TRNS,
                                                                   //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
@@ -137,11 +130,11 @@ combo_t key_combos[] = {
 // https://github.com/getreuer/qmk-keymap
 
 #include "features/achordion.h"
-#include "features/layer_lock.h"
 
 bool process_record_user(uint16_t keycode, keyrecord_t* record) {
   if (!process_achordion(keycode, record)) { return false; }
-  if (!process_layer_lock(keycode, record, LLOCK)) { return false; }
+  // Your macros ...
+
   return true;
 }
 
@@ -222,4 +215,3 @@ uint16_t achordion_streak_timeout(uint16_t tap_hold_keycode) {
     return 100;
   }
 }
-
