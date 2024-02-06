@@ -37,6 +37,13 @@
 #define CTL_G    LCTL(KC_G)
 #define BS_WORD  LCTL(KC_BSPC)
 
+// Custom keycodes
+// here I define LayerLock, following
+// https://getreuer.info/posts/keyboards/layer-lock/index.html
+enum custom_keycodes {
+  LLOCK = SAFE_RANGE,
+  // Other custom keys...
+};
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [QWERTY] = LAYOUT(
@@ -55,13 +62,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 [NAV] = LAYOUT(
                                                                   //┌────────┬────────┬────────┬────────┬────────┬────────┐                          ┌────────┬────────┬────────┬────────┬────────┬────────┐
-                                                                     TG(1), KC_PSCR,  KC_HOME, KC_PGUP, KC_INS, KC_PAUS,                            KC_ACL0, KC_ACL1, KC_ACL2, KC_MUTE, KC_VOLD, KC_VOLU,
+                                                                      KC_TRNS,  KC_PSCR,  KC_HOME, KC_PGUP, KC_INS, KC_PAUS,                            KC_ACL0, KC_ACL1, KC_ACL2, KC_MUTE, KC_VOLD, KC_VOLU,
                                                                   //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
                                                                       KC_TRNS, KC_SCRL, KC_END,  KC_PGDN, KC_DEL, CW_TOGG,                             KC_MS_L, KC_MS_D, KC_MS_U, KC_MS_R, KC_MPRV, KC_MNXT,
                                                                   //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
                                                                       KC_TRNS,OSM_LGUI,OSM_LSFT,OSM_LCTL,OSM_LALT,OSM_MEH,                            KC_LEFT, KC_DOWN,  KC_UP,   KC_RGHT, KC_MPLY, KC_MSTP,
                                                                   //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
-                                                                     KC_TRNS,  UNDO,    CUT,     COPY,    PASTE,   REDO,    KC_TRNS,          KC_TRNS, KC_WH_L, KC_WH_D, KC_WH_U, KC_WH_R, KC_BTN4, KC_BTN5,
+                                                                      LLOCK,   UNDO,    CUT,     COPY,    PASTE,   REDO,    KC_TRNS,          KC_TRNS, KC_WH_L, KC_WH_D, KC_WH_U, KC_WH_R, KC_BTN4, KC_BTN5,
                                                                   //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
                                                                                                     KC_TRNS, KC_TRNS, KC_TRNS,                    KC_BTN1, KC_BTN2, KC_BTN3
                                                                                                 // └────────┴────────┴────────┘                 └────────┴────────┴────────┘
@@ -69,27 +76,27 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 [SYM] = LAYOUT(
                                                                   //┌────────┬────────┬────────┬────────┬────────┬────────┐                          ┌────────┬────────┬────────┬────────┬────────┬────────┐
-                                                                     TG(2),  KC_F1,   KC_F2,   KC_F3,    KC_F4,   KC_F5,                             KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,
+                                                                      KC_TRNS,   KC_F1,   KC_F2,   KC_F3,    KC_F4,   KC_F5,                             KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,
                                                                   //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
                                                                        KC_TAB, KC_GRV,  KC_LT,   KC_GT,   KC_DQUO, KC_DOT,                            KC_AMPR,  KC_EQL, KC_LBRC, KC_RBRC, KC_RPRN,  KC_F12,
                                                                   //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
                                                                      KC_TRNS, KC_EXLM, KC_MINS,  KC_PLUS, KC_EQL,  KC_HASH,                           KC_PIPE, KC_COLN, KC_LPRN, KC_RPRN,  KC_AT,   KC_NO,
                                                                   //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
-                                                                     KC_TRNS, KC_CIRC, KC_SLSH, KC_ASTR, KC_BSLS, KC_UNDS, BS_WORD,           KC_TRNS, KC_TILD,  KC_DLR, KC_LCBR, KC_RCBR, KC_QUES,  KC_NO,
+                                                                      LLOCK,  KC_CIRC, KC_SLSH, KC_ASTR, KC_BSLS, KC_UNDS, BS_WORD,           KC_TRNS, KC_TILD,  KC_DLR, KC_LCBR, KC_RCBR, KC_QUES,  KC_NO,
                                                                   //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
-                                                                                                    KC_TRNS, KC_TAB,  KC_TRNS,                   KC_TRNS, KC_TRNS, KC_TRNS
+                                                                                                     KC_TRNS, KC_TRNS, KC_TRNS,                   KC_TRNS, KC_TRNS, KC_TRNS
                                                                                                 // └────────┴────────┴────────┘                 └────────┴────────┴────────┘
 ),
 
 [NUM] = LAYOUT(
                                                                   //┌────────┬────────┬────────┬────────┬────────┬────────┐                          ┌────────┬────────┬────────┬────────┬────────┬────────┐
-                                                                     TG(3), RGB_TOG, RGB_MOD, RGB_RMOD, RGB_VAD, RGB_VAI,                            KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_BSPC,
+                                                                      KC_TRNS,  RGB_TOG, RGB_MOD, RGB_RMOD, RGB_VAD, RGB_VAI,                            KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_BSPC,
                                                                   //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
                                                                      KC_TRNS, BL_TOGG, BL_STEP,  BL_ON,    BL_UP,  BL_DOWN,                            KC_PAST,  KC_7,    KC_8,    KC_9,   KC_PSLS, KC_TRNS,
                                                                   //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
                                                                      KC_TRNS, KC_LGUI, KC_LSFT, KC_LCTL, KC_LALT, KC_TRNS,                             KC_MINS,  KC_4,    KC_5,    KC_6,   KC_PPLS, KC_TRNS,
                                                                   //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
-                                                                     KC_TRNS,   UNDO,    CUT,     COPY,   PASTE,   REDO,    KC_TRNS,         KC_TRNS, KC_TRNS,   KC_1,    KC_2,    KC_3,   KC_EQL,  KC_PENT,
+                                                                      LLOCK,   UNDO,    CUT,     COPY,   PASTE,   REDO,    KC_TRNS,         KC_TRNS, KC_TRNS,   KC_1,    KC_2,    KC_3,   KC_EQL,  KC_PENT,
                                                                   //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
                                                                                                     KC_TRNS, KC_TRNS, KC_TRNS,                   KC_TRNS,  KC_DOT,   KC_0
                                                                                                 // └────────┴────────┴────────┘                 └────────┴────────┴────────┘
@@ -130,11 +137,11 @@ combo_t key_combos[] = {
 // https://github.com/getreuer/qmk-keymap
 
 #include "features/achordion.h"
+#include "features/layer_lock.h"
 
 bool process_record_user(uint16_t keycode, keyrecord_t* record) {
   if (!process_achordion(keycode, record)) { return false; }
-  // Your macros ...
-
+  if (!process_layer_lock(keycode, record, LLOCK)) { return false; }
   return true;
 }
 
@@ -215,3 +222,4 @@ uint16_t achordion_streak_timeout(uint16_t tap_hold_keycode) {
     return 100;
   }
 }
+
