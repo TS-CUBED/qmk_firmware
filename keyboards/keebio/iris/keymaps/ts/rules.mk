@@ -1,5 +1,10 @@
-SRC += features/achordion.c
+# SRC += features/achordion.c
 SRC += features/layer_lock.c
+
+
+# Optimisation
+# BOOTLOADER = rp2040
+# EXTRAFLAGS+=-flto
 
 # VIA_ENABLE = yes
 # VIAL_ENABLE = yes

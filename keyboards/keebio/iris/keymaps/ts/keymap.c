@@ -1,6 +1,5 @@
 #include QMK_KEYBOARD_H
 
-
 #define QWERTY 0
 #define NAV    1
 #define SYM    2
@@ -116,6 +115,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 )
 };
 
+const char chordal_hold_layout[MATRIX_ROWS][MATRIX_COLS] PROGMEM =
+    LAYOUT(
+      'L', 'L', 'L', 'L', 'L', 'L',           'R', 'R', 'R', 'R', 'R', '*',
+      'L', 'L', 'L', 'L', 'L', 'L',           'R', 'R', 'R', 'R', 'R', '*',
+      'L', 'L', 'L', 'L', 'L', 'L',           'R', 'R', 'R', 'R', 'R', 'R',
+      'L', 'L', 'L', 'L', 'L', 'L', '*', '*', 'R', 'R', 'R', 'R', 'R', 'R',
+                          '*', '*', '*', '*', '*', '*'
+    );
 
 #if defined(ENCODER_ENABLE) && defined(ENCODER_MAP_ENABLE)
 const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][NUM_DIRECTIONS] = {
@@ -136,18 +143,22 @@ combo_t key_combos[] = {
 // Achordeon https://getreuer.info/posts/keyboards/achordion/index.html#add-achordion-to-your-keymap
 // https://github.com/getreuer/qmk-keymap
 
-#include "features/achordion.h"
+/* #include "features/achordion.h" */
+// Not using this anymore, swithching to the new chordal hold which is in QMK now
+//
+
+
 #include "features/layer_lock.h"
 
-bool process_record_user(uint16_t keycode, keyrecord_t* record) {
-  if (!process_achordion(keycode, record)) { return false; }
-  if (!process_layer_lock(keycode, record, LLOCK)) { return false; }
-  return true;
-}
+/* bool process_record_user(uint16_t keycode, keyrecord_t* record) { */
+/*   if (!process_achordion(keycode, record)) { return false; } */
+/*   if (!process_layer_lock(keycode, record, LLOCK)) { return false; } */
+/*   return true; */
+/* } */
 
-void matrix_scan_user(void) {
-  achordion_task();
-}
+/* void matrix_scan_user(void) { */
+/*   achordion_task(); */
+/* } */
 
 uint16_t get_tapping_term(uint16_t keycode, keyrecord_t* record) {
   switch (keycode) {
@@ -172,54 +183,61 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t* record) {
   // lead to missed triggers in fast typing. Here, returning 0 means we
   // instead want to "force hold" and disable key repeating.
   switch (keycode) {
-    // Repeating is useful for Vim navigation keys.
-    case HOME_J:
-    case HOME_K:
-    case HOME_L:
-    case HOME_SC:
+      // Repeating is useful for Vim navigation keys.
+  case HOME_J:
+  case HOME_K:
+  case HOME_L:
+  case HOME_SC:
+  case HOME_SL:
+  case HOME_DOT:
+  case HOME_A:
+  case HOME_S:
+  case HOME_D:
+  case HOME_F:
+  case HOME_Z:
+  case HOME_X:
       return QUICK_TAP_TERM;  // Enable key repeating.
-    default:
+  default:
       return 0;  // Otherwise, force hold and disable key repeating.
   }
 }
 
-bool achordion_chord(uint16_t tap_hold_keycode, keyrecord_t* tap_hold_record,
-                     uint16_t other_keycode, keyrecord_t* other_record) {
-  // Exceptionally consider the following chords as holds, even though they
-  // are on the same hand
-  switch (tap_hold_keycode) {
-    case LT_NAV:
-    case LT_SYM:
-    case LT_NUM:
-      return true;
-      break;
-  }
+/* bool achordion_chord(uint16_t tap_hold_keycode, keyrecord_t* tap_hold_record, */
+/*                      uint16_t other_keycode, keyrecord_t* other_record) { */
+/*   // Exceptionally consider the following chords as holds, even though they */
+/*   // are on the same hand */
+/*   switch (tap_hold_keycode) { */
+/*     case LT_NAV: */
+/*     case LT_SYM: */
+/*     case LT_NUM: */
+/*       return true; */
+/*       break; */
+/*   } */
 
   // Also allow same-hand holds when the other key is in the rows below the
   // alphas. I need the `% (MATRIX_ROWS / 2)` because my keyboard is split.
-  if (other_record->event.key.row % (MATRIX_ROWS / 2) >= 4) {
-    return true;
-  }
+/*   if (other_record->event.key.row % (MATRIX_ROWS / 2) >= 4) { */
+/*     return true; */
+/*   } */
 
-  // Otherwise, follow the opposite hands rule.
-  return achordion_opposite_hands(tap_hold_record, other_record);
-}
+/*   // Otherwise, follow the opposite hands rule. */
+/*   return achordion_opposite_hands(tap_hold_record, other_record); */
+/* } */
 
-uint16_t achordion_timeout(uint16_t tap_hold_keycode) {
-  return 800;  // Use a timeout of 800 ms.
-}
+/* uint16_t achordion_timeout(uint16_t tap_hold_keycode) { */
+/*   return 800;  // Use a timeout of 800 ms. */
+/* } */
 
-uint16_t achordion_streak_timeout(uint16_t tap_hold_keycode) {
-  if (IS_QK_LAYER_TAP(tap_hold_keycode)) {
-    return 0;  // Disable streak detection on layer-tap keys.
-  }
+/* uint16_t achordion_streak_timeout(uint16_t tap_hold_keycode) { */
+/*   if (IS_QK_LAYER_TAP(tap_hold_keycode)) { */
+/*     return 0;  // Disable streak detection on layer-tap keys. */
+/*   } */
 
-  // Otherwise, tap_hold_keycode is a mod-tap key.
-  uint8_t mod = mod_config(QK_MOD_TAP_GET_MODS(tap_hold_keycode));
-  if ((mod & MOD_LSFT) != 0) {
-    return 0;  // Disable for Shift mod-tap keys.
-  } else {
-    return 100;
-  }
-}
-
+/*   // Otherwise, tap_hold_keycode is a mod-tap key. */
+/*   uint8_t mod = mod_config(QK_MOD_TAP_GET_MODS(tap_hold_keycode)); */
+/*   if ((mod & MOD_LSFT) != 0) { */
+/*     return 0;  // Disable for Shift mod-tap keys. */
+/*   } else { */
+/*     return 100; */
+/*   } */
+/* } */
