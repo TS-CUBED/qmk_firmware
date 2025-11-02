@@ -61,15 +61,15 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 [NAV] = LAYOUT(
                                                                   //┌────────┬────────┬────────┬────────┬────────┬────────┐                          ┌────────┬────────┬────────┬────────┬────────┬────────┐
-                                                                      KC_TRNS,  KC_PSCR,  KC_HOME, KC_PGUP, KC_INS, KC_PAUS,                            KC_ACL0, KC_ACL1, KC_ACL2, KC_MUTE, KC_VOLD, KC_VOLU,
+                                                                      KC_TRNS,  KC_PSCR,  KC_HOME, KC_PGUP, KC_INS, KC_PAUS,                            MS_ACL0, MS_ACL1, MS_ACL2, KC_MUTE, KC_VOLD, KC_VOLU,
                                                                   //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
-                                                                      KC_TRNS, KC_SCRL, KC_END,  KC_PGDN, KC_DEL, CW_TOGG,                             KC_MS_L, KC_MS_D, KC_MS_U, KC_MS_R, KC_MPRV, KC_MNXT,
+                                                                      KC_TRNS, KC_SCRL, KC_END,  KC_PGDN, KC_DEL, CW_TOGG,                             MS_LEFT, MS_DOWN, MS_UP,  MS_RGHT, KC_MPRV, KC_MNXT,
                                                                   //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
                                                                       KC_TRNS,OSM_LGUI,OSM_LSFT,OSM_LCTL,OSM_LALT,OSM_MEH,                            KC_LEFT, KC_DOWN,  KC_UP,   KC_RGHT, KC_MPLY, KC_MSTP,
                                                                   //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
-                                                                      LLOCK,   UNDO,    CUT,     COPY,    PASTE,   REDO,    KC_TRNS,          KC_TRNS, KC_WH_L, KC_WH_D, KC_WH_U, KC_WH_R, KC_BTN4, KC_BTN5,
+                                                                      LLOCK,   UNDO,    CUT,     COPY,    PASTE,   REDO,    KC_TRNS,          KC_TRNS, MS_WHLL, MS_WHLD,MS_WHLU, MS_WHLR, MS_BTN4, MS_BTN5,
                                                                   //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
-                                                                                                    KC_TRNS, KC_TRNS, KC_TRNS,                    KC_BTN1, KC_BTN2, KC_BTN3
+                                                                                                    KC_TRNS, KC_TRNS, KC_TRNS,                    MS_BTN1, MS_BTN2, MS_BTN3
                                                                                                 // └────────┴────────┴────────┘                 └────────┴────────┴────────┘
 ),
 
@@ -89,7 +89,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 [NUM] = LAYOUT(
                                                                   //┌────────┬────────┬────────┬────────┬────────┬────────┐                          ┌────────┬────────┬────────┬────────┬────────┬────────┐
-                                                                      KC_TRNS,  RGB_TOG, RGB_MOD, RGB_RMOD, RGB_VAD, RGB_VAI,                            KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_BSPC,
+                                                                      KC_TRNS, RM_TOGG, RM_NEXT, RM_HUEU, RM_VALD,  RM_VALU,                            KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_BSPC,
                                                                   //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
                                                                      KC_TRNS, BL_TOGG, BL_STEP,  BL_ON,    BL_UP,  BL_DOWN,                            KC_PAST,  KC_7,    KC_8,    KC_9,   KC_PSLS, KC_TRNS,
                                                                   //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
